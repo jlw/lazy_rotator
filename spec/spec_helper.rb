@@ -1,11 +1,6 @@
 # frozen_string_literal: true
 
 require 'bundler/setup'
-require 'lazy_rotator'
-require 'simplecov'
-SimpleCov.start do
-  add_filter "/vendor/ruby"
-end
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
@@ -17,4 +12,14 @@ RSpec.configure do |config|
   config.expect_with :rspec do |c|
     c.syntax = :expect
   end
+
+  unless config.files_to_run.one?
+    require 'simplecov'
+    SimpleCov.start do
+      add_filter '/spec'
+      add_filter '/vendor/ruby'
+    end
+  end
 end
+
+require 'lazy_rotator'

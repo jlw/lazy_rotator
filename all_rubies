@@ -1,0 +1,44 @@
+#!/bin/bash
+
+versions=('2.2.10' '2.3.7' '2.4.4' '2.5.1')
+
+switcher=`which rbenv`
+if [[ $switcher = *[!\ ]* ]]; then
+  verb="local"
+else
+  switcher=`which rvm`
+  if [[ $switcher = *[!\ ]* ]]; then
+    verb="use"
+  else
+    echo "Please install rbenv or rvm"
+    exit 1
+  fi
+fi
+
+case "$1" in
+  bundle)
+    for version in ${versions[@]}
+    do
+      echo "Bundle for Ruby $version"
+      eval "$switcher $verb $version"
+      gem list --local bundler | grep bundler || gem install bundler --no-ri --no-rdoc
+      bundle install --path vendor
+      bundle update
+    done
+    ;;
+
+  spec)
+    for version in ${versions[@]}
+    do
+      echo "Run specs with Ruby $version"
+      eval "$switcher $verb $version"
+      bundle exec rspec spec
+    done
+    ;;
+
+  *)
+    echo $"Usage: $0 {bundle|spec}"
+    exit 1
+esac
+
+exit 0

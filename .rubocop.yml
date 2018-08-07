@@ -1,0 +1,15 @@
+AllCops:
+  TargetRubyVersion: 2.2
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
+
+Metrics/LineLength:
+  Exclude:
+    - 'lazy_rotator.gemspec'
+    - 'spec/**/*'
+
+Style/MutableConstant:
+  Exclude:
+    - 'lib/lazy_rotator/version.rb'
