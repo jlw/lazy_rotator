@@ -25,16 +25,17 @@ Or install it yourself as:
 For a Rails app, add the following to `config/application.rb`:
 
 ```ruby
-if defined?(LazyRotator) && (Rails.env.test? || Rails.env.development?)
-  LazyRotator.rotate(File.expand_path("../log/#{Rails.env}.log", __dir__))
+if Kernel.const_defined?(:LazyRotator) && (Rails.env.test? || Rails.env.development?)
+  log_file = File.expand_path("../log/#{Rails.env}.log", __dir__)
+  LazyRotator.rotate log_file
 end
 ```
 
-_Note:_ you will probably need to update your `.gitignore` file to match `/log/*.log*` - that trailing `*` will catch the rotated files.
+_Note:_ you will probably need to update your `.gitignore` file to match `/log/*.log*` - that trailing `*` will make sure the rotated log files are ignored.
 
 Set the number of copies to keep (the default is 5):
 ```ruby
-LazyRotator.rotate('path/to/log', 20)
+LazyRotator.rotate 'path/to/log', 20
 ```
 
 
