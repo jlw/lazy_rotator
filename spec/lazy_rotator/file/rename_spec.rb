@@ -24,8 +24,8 @@ RSpec.describe LazyRotator do
 
       describe :new_file_name do
         it 'removes the current number from the file' do
-          expect(test_log.new_file_name).to eq test_log_path + '.1'
-          expect(test_log_four.new_file_name).to eq test_log_path + '.5'
+          expect(test_log.new_file_name).to eq "#{test_log_path}.1"
+          expect(test_log_four.new_file_name).to eq "#{test_log_path}.5"
         end
       end
 
@@ -53,7 +53,7 @@ RSpec.describe LazyRotator do
 
       describe :process do
         it 'renames the file' do
-          expect(File).to receive(:rename).with(test_log_path, test_log_path + '.1')
+          expect(File).to receive(:rename).with(test_log_path, "#{test_log_path}.1")
           test_log.process
         end
       end

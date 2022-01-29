@@ -17,19 +17,19 @@ module LazyRotator
 
       def process; end
 
-      # rubocop:disable Metrics/AbcSize
       def ==(other)
         return false if self.class.name != other.class.name
         return false if number != other.number
         return false if file_name != other.file_name
         return true unless respond_to?(:new_number)
         return false if new_number != other.new_number
+
         true
       end
-      # rubocop:enable Metrics/AbcSize
 
       def <=>(other)
         return number <=> other.number unless number == other.number
+
         file_name <=> other.file_name
       end
 

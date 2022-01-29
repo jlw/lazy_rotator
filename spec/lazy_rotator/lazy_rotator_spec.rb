@@ -48,7 +48,7 @@ RSpec.describe LazyRotator do
       LazyRotator.rotate(test_log_path, 5)
       expect(strip_dir(list_files_from_dir)).to eq strip_dir(rotated_files)
 
-      File.open(test_log_path, 'w') { |f| f.write 'Hello, world!' }
+      File.write(test_log_path, 'Hello, world!')
       expect(File.stat(test_log_path).size).to eq 13
       LazyRotator.rotate(test_log_path, 5)
       expect(strip_dir(list_files_from_dir)).to eq strip_dir(rotated_files)
@@ -70,11 +70,11 @@ RSpec.describe LazyRotator do
     end
 
     def list_files_from_dir
-      Dir.glob(dir + '/*').sort
+      Dir.glob("#{dir}/*").sort
     end
 
     def strip_dir(files)
-      files.map { |f| f.sub(dir + '/', '') }
+      files.map { |f| f.sub("#{dir}/", '') }
     end
   end
 end

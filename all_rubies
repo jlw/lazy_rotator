@@ -1,19 +1,37 @@
 #!/bin/bash
 
-versions=('2.2.10' '2.3.7' '2.4.4' '2.5.1')
+versions=('2.6.9' '2.7.5' '3.0.3' '3.1.0')
 
-switcher=`which rbenv`
+switcher=`which asdf`
 if [[ $switcher = *[!\ ]* ]]; then
-  verb="local"
+  verb="local ruby"
 else
-  switcher=`which rvm`
+  switcher=`which rbenv`
   if [[ $switcher = *[!\ ]* ]]; then
-    verb="use"
+    verb="local"
   else
-    echo "Please install rbenv or rvm"
-    exit 1
+    switcher=`which rvm`
+    if [[ $switcher = *[!\ ]* ]]; then
+      verb="use"
+    else
+      echo "Please install asdf, rbenv, or rvm"
+      exit 1
+    fi
   fi
 fi
+
+bundle_exec() {
+  local cmd="$1"
+  local version="$2"
+  echo "Run $cmd with Ruby $version"
+  eval "$switcher $verb $version"
+  if [[ -f "Gemfile.lock.$version" ]]; then
+    eval "cp Gemfile.lock.$version Gemfile.lock"
+  else
+    echo "Please run ./all_rubies bundle first"
+  fi
+  bundle exec $cmd
+}
 
 case "$1" in
   bundle)
@@ -21,23 +39,31 @@ case "$1" in
     do
       echo "Bundle for Ruby $version"
       eval "$switcher $verb $version"
+      rm Gemfile.lock
+      if [[ -f "Gemfile.lock.$version" ]]; then
+        eval "cp Gemfile.lock.$version Gemfile.lock"
+      fi
       gem list --local bundler | grep bundler || gem install bundler --no-ri --no-rdoc
-      bundle install --path vendor
+      gem update bundler
+      bundle install --path vendor/bundle
       bundle update
+      eval "cp Gemfile.lock Gemfile.lock.$version"
     done
+    ;;
+
+  cop)
+    bundle_exec "rubocop" ${versions[0]}
     ;;
 
   spec)
     for version in ${versions[@]}
     do
-      echo "Run specs with Ruby $version"
-      eval "$switcher $verb $version"
-      bundle exec rspec spec
+      bundle_exec "rspec spec" $version
     done
     ;;
 
   *)
-    echo $"Usage: $0 {bundle|spec}"
+    echo $"Usage: $0 {bundle|spec|cop}"
     exit 1
 esac
 

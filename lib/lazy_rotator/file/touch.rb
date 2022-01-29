@@ -6,6 +6,7 @@ module LazyRotator
     class Touch < Undetermined
       def process
         return unless number.zero?
+
         ::FileUtils.touch file_name
       end
     end

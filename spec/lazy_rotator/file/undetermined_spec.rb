@@ -44,7 +44,7 @@ RSpec.describe LazyRotator do
         end
 
         it 'falls back to file name for duplicated numbers' do
-          dup_log = LazyRotator::File::Undetermined.new(test_log_path + '.a')
+          dup_log = LazyRotator::File::Undetermined.new("#{test_log_path}.a")
           expect(test_log <=> dup_log).to eq(-1)
         end
       end

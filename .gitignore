@@ -1,6 +1,7 @@
 .DS_Store
 /.bundle/
 /.ruby-version
+/.tool-versions
 /.yardoc
 /_yardoc/
 /coverage/
@@ -10,7 +11,7 @@
 /tmp/
 /vendor/ruby
 
-/Gemfile.lock
+/Gemfile.lock*
 
 # rspec failure tracking
 .rspec_status

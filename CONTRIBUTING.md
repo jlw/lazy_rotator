@@ -23,7 +23,7 @@ If you discover issues, have ideas for improvements or new features, please repo
 - Add an entry to the [Change Log](CHANGELOG.md) accordingly.
 - Please try not to mess with the Rakefile, version, or history. If you want to have your own version, or is otherwise necessary, that is fine, but please isolate to its own commit so I can cherry-pick around it.
 - Make sure the test suite is passing for all supported Ruby versions: `./all_rubies bundle && ./all_rubies spec`.
-- Make sure the code you wrote doesn't produce RuboCop offenses `bundle exec rubocop`.
+- Make sure the code you wrote doesn't produce RuboCop offenses `./all_rubies cop`.
 - [Squash related commits together][5].
 - Open a [pull request][4] that relates to _only_ one subject with a clear title and description in grammatically correct, complete sentences.
 

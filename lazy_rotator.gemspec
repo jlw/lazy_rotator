@@ -14,6 +14,7 @@ Gem::Specification.new do |spec|
   spec.description   = "Tie log (or other file) rotation to the (un-scheduled?) execution of code. The raison d'étre for this gem is that I'm too lazy to clear out test and development logs manually and am too anal-retentive to be happy with large log files accumulating in my various project directories."
   spec.homepage      = 'https://github.com/jlw/lazy_rotator'
   spec.license       = 'Unlicense'
+  spec.metadata      = { 'rubygems_mfa_required' => 'true' }
 
   spec.files         = `git ls-files -z`.split("\x0").reject do |f|
     f.match(%r{^(test|spec|features)/})
@@ -22,11 +23,11 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
 
-  spec.required_ruby_version = '>= 2.2.0'
+  spec.required_ruby_version = '>= 2.6.0'
 
-  spec.add_development_dependency 'bundler', '~> 1.16'
+  spec.add_development_dependency 'bundler'
   spec.add_development_dependency 'fuubar'
-  spec.add_development_dependency 'rake', '~> 10.0'
+  spec.add_development_dependency 'rake', '~> 13.0'
   spec.add_development_dependency 'rspec', '~> 3.0'
   spec.add_development_dependency 'rubocop'
   spec.add_development_dependency 'simplecov'

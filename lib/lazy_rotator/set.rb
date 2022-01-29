@@ -23,7 +23,7 @@ module LazyRotator
 
     class << self
       def file_regexp(file_name)
-        Regexp.new(Regexp.quote(file_name) + '(\\.\\d+)?$')
+        Regexp.new("#{Regexp.quote(file_name)}(\\.\\d+)?$")
       end
 
       # return a set of collected files with correct processing decisions
@@ -44,7 +44,7 @@ module LazyRotator
       # find all matching files that should be processed as part of the rotation
       def collect_files(file_name)
         regexp     = file_regexp(file_name)
-        naive_list = Dir.glob(file_name + '*')
+        naive_list = Dir.glob("#{file_name}*")
         file_list  = naive_list.select { |f| regexp.match(f) }
         file_list.map { |f| File::Undetermined.new(f) }.sort
       end
