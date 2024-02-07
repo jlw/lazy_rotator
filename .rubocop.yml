@@ -2,13 +2,15 @@ AllCops:
   TargetRubyVersion: 2.6
   NewCops: enable
 
-Metrics/BlockLength:
-  Exclude:
-    - 'spec/**/*'
+Gemspec/DevelopmentDependencies:
+  Enabled: false
 
-Metrics/LineLength:
+Layout/LineLength:
   Exclude:
     - 'lazy_rotator.gemspec'
+
+Metrics/BlockLength:
+  Exclude:
     - 'spec/**/*'
 
 Style/MutableConstant:

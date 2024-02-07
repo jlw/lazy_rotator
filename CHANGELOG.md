@@ -14,6 +14,12 @@
 
 - N/A
 
+## [0.3.0 (2024-02-07)](https://github.com/jlw/lazy_rotator/compare/v0.2.0...v0.3.0)
+
+### Changes
+
+- Check for file's existence before performing the rotation
+
 ## [0.2.0 (2022-01-29)](https://github.com/jlw/lazy_rotator/compare/v0.1.0...v0.2.0)
 
 ### Changes

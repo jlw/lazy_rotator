@@ -8,7 +8,7 @@ module LazyRotator
 
       def initialize(file_name, new_number)
         @new_number = new_number
-        super file_name
+        super(file_name)
       end
 
       def file_name_without_number

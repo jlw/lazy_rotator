@@ -62,7 +62,16 @@ RSpec.describe LazyRotator do
       expect(File).to receive(:rename).with(file_name('.1'), file_name('.2'))
       expect(File).to receive(:rename).with(file_name, file_name('.1'))
       expect(FileUtils).to receive(:touch).with(file_name)
+
       LazyRotator.rotate(test_log_path, 5)
+    end
+
+    it 'does not continue if the file does not exist' do
+      allow(LazyRotator::Set).to receive(:new).and_call_original
+
+      LazyRotator.rotate(File.expand_path('../dummy-temp/foo.log', __dir__))
+
+      expect(LazyRotator::Set).not_to have_received :new
     end
 
     def file_name(ext = '')
