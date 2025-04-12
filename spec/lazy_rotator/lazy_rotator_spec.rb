@@ -79,7 +79,7 @@ RSpec.describe LazyRotator do
     end
 
     def list_files_from_dir
-      Dir.glob("#{dir}/*").sort
+      Dir.glob("#{dir}/*")
     end
 
     def strip_dir(files)

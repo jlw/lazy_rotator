@@ -1,6 +1,6 @@
 #!/bin/bash
 
-versions=('2.6.9' '2.7.5' '3.0.3' '3.1.0')
+versions=('3.2.8' '3.3.8' '3.4.2')
 
 switcher=`which asdf`
 if [[ $switcher = *[!\ ]* ]]; then

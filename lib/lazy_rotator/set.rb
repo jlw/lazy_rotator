@@ -13,8 +13,8 @@ module LazyRotator
       @files = self.class.prepare_files(file_name, retention_limit).reverse
     end
 
-    def each(&block)
-      @files.each(&block)
+    def each(&)
+      @files.each(&)
     end
 
     def process
