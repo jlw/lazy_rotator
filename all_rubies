@@ -35,18 +35,14 @@ bundle_exec() {
 
 case "$1" in
   bundle)
+    rm Gemfile.lock*
     for version in ${versions[@]}
     do
       echo "Bundle for Ruby $version"
       eval "$switcher $verb $version"
-      rm Gemfile.lock
-      if [[ -f "Gemfile.lock.$version" ]]; then
-        eval "cp Gemfile.lock.$version Gemfile.lock"
-      fi
       gem list --local bundler | grep bundler || gem install bundler --no-ri --no-rdoc
       gem update bundler
       bundle install --path vendor/bundle
-      bundle update
       eval "cp Gemfile.lock Gemfile.lock.$version"
     done
     ;;
