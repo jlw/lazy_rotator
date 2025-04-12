@@ -14,6 +14,14 @@
 
 - N/A
 
+## [0.4.0 (2025-04-12)](https://github.com/jlw/lazy_rotator/compare/v0.3.0...v0.4.0)
+
+### Changes
+
+- Ensure support of Ruby 3.2, 3.3, 3.4
+- Remove support of Ruby 2.6, 2.7, 3.0, 3.1 (all past their end of life)
+- Refresh bundles more cleanly and quickly (install vs. install + update)
+
 ## [0.3.0 (2024-02-07)](https://github.com/jlw/lazy_rotator/compare/v0.2.0...v0.3.0)
 
 ### Changes
