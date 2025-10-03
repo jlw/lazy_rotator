@@ -1,10 +1,10 @@
 #!/bin/bash
 
-versions=('3.2.8' '3.3.8' '3.4.2')
+versions=('3.2.9' '3.3.9' '3.4.6')
 
 switcher=`which asdf`
 if [[ $switcher = *[!\ ]* ]]; then
-  verb="local ruby"
+  verb="current ruby"
 else
   switcher=`which rbenv`
   if [[ $switcher = *[!\ ]* ]]; then
