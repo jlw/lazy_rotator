@@ -14,6 +14,13 @@
 
 - N/A
 
+## [0.4.1 (2025-10-03)](https://github.com/jlw/lazy_rotator/compare/v0.4.0...v0.4.1)
+
+### Changes
+
+- Bump minor versions of Ruby 3.2, 3.3, 3.4 under test
+- Fix File::Touch for some Ruby 3.4 Rails apps
+
 ## [0.4.0 (2025-04-12)](https://github.com/jlw/lazy_rotator/compare/v0.3.0...v0.4.0)
 
 ### Changes
